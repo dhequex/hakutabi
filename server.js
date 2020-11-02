@@ -1,12 +1,11 @@
-
 const express = require("express")
 const app = express();
-require('dotenv').config()
+import dotenv from 'dotenv'
+dotenv.config()
 
 
-app.get("/api/weather/", (req, res) =>{
-  
- 
+app.get("/api/weather/key", (req, res) =>{
+   
     try{
         
         JSON = res.json(weather)

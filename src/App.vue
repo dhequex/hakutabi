@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <Header :user ="user"></Header>
-    <img alt="Vue logo" src="./assets/logo.png">
     <Weather msg="This is the WEATHER"/>
   </div>
 </template>
