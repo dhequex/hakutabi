@@ -5,13 +5,22 @@
 </template>
 
 <script>
+require('dotenv').config()
 export default {
   name: 'Weather',
   data: ()=> ({
-    
+  lat: 0,
+  lon:0, 
+  current: null,
+  sunrise: null,
+  sunset:null,
+  temp:null,
+  feels_like:null,
+  weather: null
+
   }),
   props: {
-    weather: null
+ 
   },
   mounted(){
    this.getWeather () 
@@ -19,13 +28,12 @@ export default {
 
  methods: {
    async getWeather () { 
-     const { weather } = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=36.6982&lon=137.8619&exclude={part}&appid=${process.env.VUE_APP_API}`)
-        .then((data) =>{
-          data.json()
-          res.send(data)
-        })
-        
-    console.log(weather)
+     const { temp } = await fetch(
+         `https://api.openweathermap.org/data/2.5/onecall?lat=36.6982&lon=137.8619&exclude={part}&appid=c77a135768188e873b69f273d312839c`
+         )
+        .then((data) => data.json()
+        )
+        .then(() => console.log("DONE"))
  }
 }
 }
