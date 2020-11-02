@@ -36,10 +36,14 @@ export default {
   props: {
     msg: String
   },
-   getWeather () { const weather = fetch("https://api.openweathermap.org/data/2.5/onecall?lat=36.6982&lon=137.8619&exclude={part}&appid=c77a135768188e873b69f273d312839c")
-        .then(response => response.json())
-        .then(data => console.log(data));
+  methods: {
+   async getWeather () { 
+     const { weather } = await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=36.6982&lon=137.8619&exclude={part}&appid=c77a135768188e873b69f273d312839c")
+        .json()
+        
+    console.log(weather)
  }
+}
 }
 </script>
 
