@@ -1,17 +1,15 @@
 <template>
-   <div class="app" id ="app">
-   <div class="weather-wrap">
-        <div class="location-box">
+   <app>
+    <v-app-bar-nav-icon></v-app-bar-nav-icon>
+    <v-responsive
+      color="Blue">   
           <div class="location">Hakuba, Japan</div>
-          <div class="date">Today</div>
+          <div class="date">{{dateBuilder()}}</div>
+          <div class="weather-box">
+          <div class="temp">{{temp}}</div>
         </div>
-
-        <div class="weather-box">
-          <div class="temp">9°c</div>
-          <div class="weather">Degrees</div>
-        </div>
-      </div>
-      </div>
+      </v-responsive>
+      </app>
 </template>
 
 <script>
@@ -21,8 +19,6 @@ dotenv.config()
 export default {
   name: 'Weather',
   data: ()=> ({
-  lat: 0,
-  lon:0, 
   current: null,
   sunrise: null,
   sunset:null,
@@ -51,9 +47,21 @@ export default {
     },
     setResults (results) {
       this.weather = results;
-      console.log(results)
+      this.current = results.current;
+      this.date = this.current.dt;
+      this.temp = this.current.temp
+      console.log(this.temp)
+    },
+dateBuilder () {
+      let d = new Date();
+      let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      let day = days[d.getDay()];
+      let date = d.getDate();
+      let month = months[d.getMonth()];
+      let year = d.getFullYear();
+      return `${day} ${date} ${month} ${year}`;
     }
-
 }
 
 }
