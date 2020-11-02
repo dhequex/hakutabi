@@ -35,10 +35,15 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+   getWeather () { const weather = fetch("https://api.openweathermap.org/data/2.5/onecall?lat=36.6982&lon=137.8619&exclude={part}&appid=c77a135768188e873b69f273d312839c")
+        .then(response => response.json())
+        .then(data => console.log(data));
+ }
 }
 </script>
 
+ 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {

@@ -4,13 +4,13 @@ const app = express();
 
 
 
-app.get("/api/weather/:id", async (req, res) =>{
+app.get("/api/weather/", (req, res) =>{
   
-    const weather = await fetch("https://api.openweathermap.org/data/2.5/onecall?lat=36.6982&lon=137.8619&exclude={part}&appid=c77a135768188e873b69f273d312839c")
-    
+ 
     try{
-        res.json(weather)
-        console.log ("Hello Weather")
+        
+        JSON = res.json(weather)
+        res.send(JSON)
     }
     catch{
         console.error("Error loading weather", err);
