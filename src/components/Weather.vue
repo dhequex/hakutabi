@@ -23,20 +23,29 @@ export default {
  
   },
   mounted(){
-   this.getWeather () 
+   this.fetchWeather () 
   },
 
  methods: {
-   async getWeather () { 
-     const { temp } = await fetch(
+
+  fetchWeather (){
+        fetch(
          `https://api.openweathermap.org/data/2.5/onecall?lat=36.6982&lon=137.8619&exclude={part}&appid=c77a135768188e873b69f273d312839c`
          )
-        .then((data) => data.json()
-        )
-        .then(() => console.log("DONE"))
- }
+          .then(res => {
+            return res.json();
+          }).then(this.setResults);
+    
+    },
+    setResults (results) {
+      this.weather = results;
+      console.log(results)
+    }
+
 }
+
 }
+
 </script>
 
  
