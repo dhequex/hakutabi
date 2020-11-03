@@ -1,6 +1,10 @@
 const express = require("express")
 const app = express();
+const knex =  require('knex');
+const config= require("./knexfile")
+const db = knex(config);
 require('dotenv').config()
+
 
 
 app.get("/api/weather/key", (req, res) =>{
