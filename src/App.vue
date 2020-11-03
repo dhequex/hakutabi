@@ -22,12 +22,11 @@
   </v-app-bar>
 
   <!-- Sizes your content based upon application components -->
-  <v-main>
-    <div id="app">
+  <v-main  class="main">
+
     <Form>:user ="user"</Form>
     <Weather></Weather>
     <Activities ></Activities>
-  </div>
 
     <!-- Provides the application the proper gutter -->
     <v-container fluid>
@@ -69,5 +68,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-color: rgb(43, 107, 226) ;
+}
+#main{
+  background-image:"src/assets/logo.png";
 }
 </style>

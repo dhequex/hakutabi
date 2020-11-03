@@ -7,9 +7,13 @@
   import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
   export default {
-    name: 'example',
+    name: 'Form',
     components: {
       FlowForm
+    },
+    props:{
+      question: QuestionModel,
+
     },
     data() {
       return {
@@ -20,12 +24,17 @@
         questions: [
           // QuestionModel array
           new QuestionModel({
-            title: 'Question',
-            type: QuestionType.MultipleChoice,
+            title: 'Welcome to Hakutabi',
+            subtitle: 'It\'s a wonderful day',
+            helpText: 'Let\'s plan your next Adventure! 😉',
+            type:QuestionType.MultipleChoice,
             options: [
               new ChoiceOption({
-                label: 'Answer'
-              })
+                label: 'Let\'s go'
+              }),
+              
+         
+              
             ]
           })
         ]
