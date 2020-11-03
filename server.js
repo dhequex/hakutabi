@@ -2,26 +2,27 @@ const express = require("express")
 const app = express();
 const knex =  require('knex');
 const config= require("./knexfile")
-const db = knex(config);
 require('dotenv').config()
+const db = knex(config);
 
+launchExpressServer();
 
+async function launchExpressServer (){
 
-app.get("/api/weather/key", (req, res) =>{
-   
-    try{
-        
-        JSON = res.json(weather)
-        res.send(JSON)
-    }
-    catch{
-        console.error("Error loading weather", err);
-    res.sendStatus(500);
-    }
+await db.migrate.latest()
+.then(() => {
+    console.log("Migrations Succeded")
 })
+.catch(console.error)
 
+
+app.get("/api/activities", (req, res) =>{
+   db.select
+    res.json("HOLA API")
+})
 
 app.listen(3000, (req,res) =>{
 
     console.log("Listening on port 3000")
 })
+}
