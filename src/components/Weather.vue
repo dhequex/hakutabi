@@ -1,15 +1,18 @@
 <template>
-   <app>
-    <v-card
+<v-container>
+    <v-card dark>
+    <v-img 
+     :src="'https://resources.matcha-jp.com/resize/720x2000/2018/10/29-65452.jpeg'"
      class="mx-auto">
-      <div> 
+      <div > 
           <v-card-title>Hakuba, Japan</v-card-title>
           <v-card-subtitle >{{dateBuilder()}}</v-card-subtitle>
-          <div>{{temp}} C°</div>
+          <div class="app">{{temp}} C°</div>
           <div>Degrees</div>
         </div>
+        </v-img>
       </v-card>
-      </app>
+    </v-container>
 </template>
 
 <script>
@@ -50,8 +53,6 @@ export default {
       this.current = results.current;
       this.date = this.dateBuilder();
       this.temp = Math.round(this.current.temp)
-      console.log(results)
-      console.log(this.temp)
     },
 dateBuilder () {
       let d = new Date();

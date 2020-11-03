@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from "axios";
+import importActivity from '../data/importActivities';
+const knex = require('knex');
+const config= require("./knexfile")
+const db = knex(config);
+require('dotenv').config()
 
 Vue.use(Vuex)
 

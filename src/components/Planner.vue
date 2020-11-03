@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app>
-    HERE THE DRAWER
+  <v-navigation-drawer>
+    Your Trip Planner
   </v-navigation-drawer>
 </template>

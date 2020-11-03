@@ -1,10 +1,14 @@
 <template>
+<v-container>
   <flow-form v-if="submitted === false"
   v-bind:questions="questions" 
-  v-bind:language="language" 
   @submit="onSubmit" 
   @complete="onComplete" 
+  v-bind:progressbar="false"
+
   />
+</v-container>
+
 </template>
 
 <script>
@@ -31,7 +35,7 @@
           // QuestionModel array
           new QuestionModel({
             title: 'Welcome to Hakutabi',
-            subtitle: 'Let\'s plan your next Adventure! 😉',
+            subtitle: 'Let\'s plan your next Adventure in the Japanese Alps! 🏔',
             helpText: 'Let\'s plan your next Adventure! 😉',
             type:QuestionType.Text,
             placeholder:"Tell me your name to start"
@@ -39,9 +43,7 @@
             ]
       }
     },
-    mounted() {
-      this.addEventListener('keyup', this.onKeyListener)
-    },
+    
     beforeDestroy() {
       this.removeEventListener('keyup', this.onKeyListener)
     },

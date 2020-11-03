@@ -7,30 +7,33 @@
       >
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
   
-        <v-toolbar-title>HAKUTABI</v-toolbar-title>
+        
   
         <v-spacer></v-spacer>
   
-        <v-btn icon>
-          <v-icon>mdi-magnify
-            @onClick:
-          </v-icon>
-        </v-btn>
+        <v-text-field search-query:
+        append-icon="mdi-magnify"
+        >
+  
+        </v-text-field>
      
   </v-app-bar>
 
   <!-- Sizes your content based upon application components -->
   <v-main  class="main">
-    <Planner></Planner>
     <Form>:user ="user"</Form>
     <Weather></Weather>
-    <Activities ></Activities>
+    <Activities >
+    <Planner>
+
+    </Planner>
+
+
+    </Activities>
 
     <!-- Provides the application the proper gutter -->
     <v-container fluid>
 
-      <!-- If using vue-router -->
-      <router-view></router-view>
     </v-container>
   </v-main>
 
@@ -45,7 +48,7 @@
 import Activities from './components/Activities.vue'
 import Weather from './components/Weather.vue'
 import Form from './components/Form.vue'
-import Planner from './components/Planner'
+import Planner from './components/Planner.vue'
 
 require('dotenv').config()
 
@@ -57,10 +60,10 @@ export default {
     Activities,
     Planner,
   },
-  props:{
+  props:[]
     
   }
-}
+
 </script>
 
 <style>

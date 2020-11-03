@@ -1,4 +1,5 @@
 <template>
+<v-container>
     <v-card
       class="mx-auto"
       max-width="400"
@@ -6,19 +7,19 @@
       <v-img
         class="white--text align-end"
         height="200px"
-        src="https://d14ii1k8b0fjjs.cloudfront.net/files/topics/17516_ext_01_en_2.jpg?v=1578361465"
+        :src="{photo}"
       >
-        <v-card-title>Outdoor Dining Experience </v-card-title>
+        <v-card-title>{{title}} </v-card-title>
       </v-img>
   
       <v-card-subtitle class="pb-0">
-        Number 10
+        {{location}}
       </v-card-subtitle>
   
       <v-card-text class="text--primary">
-        <div>Field Suite Hakuba</div>
+        <div>{{title}}</div>
   
-        <div>Happo, Kitaone</div>
+        <div>{{short_description}}</div>
       </v-card-text>
   
       <v-card-actions>
@@ -37,6 +38,7 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+    </v-container>
 </template>
 
 <script>
@@ -54,42 +56,31 @@ export default {
   location: null
 
   }),
-  props: {
- 
-  },
+  props: [],
+
   mounted(){
-   
+   this.getActivities()
   },
 
  methods: {
 
   getActivities (){
         fetch(
-         `https://api.openweathermap.org/data/2.5/onecall?lat=36.6982&lon=137.8619&units=metric&appid=${process.env.VUE_APP_API}`
+         `${process.env.DATABASE_URL}`
          )
-          .then(res => {
-            return res.json();
-          }).then(this.setResults);
-    
+          .select()
+          .from('activities')
+          .then ((data) => {
+          console.log(data)    
+    });
     },
-    setResults (results) {
-      this.weather = results;
-      this.current = results.current;
-      this.date = this.dateBuilder();
-      this.temp = Math.round(this.current.temp)
-      console.log(results)
-      console.log(this.temp)
+    setActivities (activities) {
+      this.activities = activities;
+      this.title = activities.title;
+      this.location = activities.location;
+      this.photo = activities.photo;
+      this.short_description = activities.short_description;
     },
-dateBuilder () {
-      let d = new Date();
-      let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      let day = days[d.getDay()];
-      let date = d.getDate();
-      let month = months[d.getMonth()];
-      let year = d.getFullYear();
-      return `${day} ${date} ${month} ${year}`;
-    }
 }
 
 }
