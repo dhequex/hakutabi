@@ -1,39 +1,44 @@
 <template>
-    <div>
-        <v-button id="startButton">
-            Let's Start
-        </v-button>
-    </div>
+  <flow-form v-bind:questions="questions" v-bind:language="language" />
 </template>
-<script >
-import * as typeformEmbed from '@typeform/embed'
 
-export default {
-  name: 'Form',
-  
-  props: {
+<script>
+  // Import necessary components and classes
+  import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
-  },
-  mounted(){
- const formPopUp = typeformEmbed.makePopUp("https://jmtorresr.typeform.com/to/lOXgZOCK",
-    {
-     mode: "popup",
-     onSubmit: function() {
-         console.log("Form Successful")
-     }
-    })
-    document.getElementById("startButton").addEventListener("click", function (){
-        formPopUp.open()
-    } )
-  },
-
- methods: {
-showForm (){
-
-"https://embed.typeform.com/embed.js"
-
-}
-}
-
-}
+  export default {
+    name: 'example',
+    components: {
+      FlowForm
+    },
+    data() {
+      return {
+        language: new LanguageModel({
+          // Your language definitions here (optional).
+          // You can leave out this prop if you want to use the default definitions.
+        }),
+        questions: [
+          // QuestionModel array
+          new QuestionModel({
+            title: 'Question',
+            type: QuestionType.MultipleChoice,
+            options: [
+              new ChoiceOption({
+                label: 'Answer'
+              })
+            ]
+          })
+        ]
+      }
+    }
+  }
 </script>
+
+<style>
+  /* Import Vue Flow Form base CSS */
+  @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
+  /* Import one of the Vue Flow Form CSS themes (optional) */
+  @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-minimal.css';
+  /* @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-green.css'; */
+  /* @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-purple.css'; */
+</style>
