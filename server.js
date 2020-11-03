@@ -15,11 +15,26 @@ await db.migrate.latest()
 })
 .catch(console.error)
 
-
-app.get("/api/activities", (req, res) =>{
-   db.select
-    res.json("HOLA API")
-})
+app.get("./api/activities", (req, res) => {
+    db
+    .select()
+    .from('activities')
+    .then ((data) => {
+        console.log(data)
+        res.send(data);
+    });
+});
+app.get("./api/activities/:id", (req, res) => {
+    const {id } = req.params
+    db
+    .select()
+    .from('activities')
+    .where(id)
+    .then ((data) => {
+        console.log(data)
+        res.send(data);
+    });
+});
 
 app.listen(3000, (req,res) =>{
 
