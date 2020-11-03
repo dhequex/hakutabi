@@ -1,7 +1,6 @@
 const express = require("express")
 const app = express();
-import dotenv from 'dotenv'
-dotenv.config()
+require('dotenv').config()
 
 
 app.get("/api/weather/key", (req, res) =>{

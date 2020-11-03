@@ -46,6 +46,7 @@ HERE THE FOOTER
 <script>
 import Activities from './components/Activities.vue'
 import Weather from './components/Weather.vue'
+require('dotenv').config()
 
 export default {
   name: 'App',
