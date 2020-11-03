@@ -1,10 +1,15 @@
 <template>
-  <flow-form v-bind:questions="questions" v-bind:language="language" @submit="onSubmit" @complete="onComplete" :progressbar="true" />
+  <flow-form v-bind:questions="questions" v-bind:language="language" @submit="onSubmit" @complete="onComplete" :progressbar="true" 
+  
+  
+  
+  
+  />
 </template>
 
 <script>
   // Import necessary components and classes
-  import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form'
+  import FlowForm, { QuestionModel, QuestionType, LanguageModel } from '@ditdot-dev/vue-flow-form'
 
   export default {
     name: 'Form',
@@ -28,49 +33,11 @@
           // QuestionModel array
           new QuestionModel({
             title: 'Welcome to Hakutabi',
-            subtitle: 'It\'s a wonderful day',
+            subtitle: 'Let\'s plan your next Adventure! 😉',
             helpText: 'Let\'s plan your next Adventure! 😉',
-            type:QuestionType.MultipleChoice,
-            options: [
-              new ChoiceOption({
-                label: 'Let\'s go'
-              })]
-          }),
-           new QuestionModel({
-            title: 'Tell me your name',
-            type:QuestionType.text,
-            }) ,
-           new QuestionModel({
-            title: "let's get started. Tell me what type of trip do you want me to plan for you. ",
-            type:QuestionType.MultipleChoice,
-            options: [
-              new ChoiceOption({
-                label: 'Solo trip',
-              }),
-              
-              new ChoiceOption({
-                  label:'Couple\'s Getaway'
-              }),
-              new ChoiceOption({
-                  label:'Family Holiday'
-              }),
-              new ChoiceOption({
-                  label:'Workation'
-              })]
-           }), 
-           new QuestionModel({
-               title: "Are you interested in Winter Sports?",
-               type:QuestionType.MultipleChoice,
-               options: [
-                   new ChoiceOption({
-                       label: 'Oh yeah that\'s me'
-                   }), 
-                   new ChoiceOption({
-                       label: 'I\'d rather relax'
-                   })
-               ] 
-               
-           })  
+            type:QuestionType.Text,
+            placeholder:"Tell me your name to start"
+          }) 
             ]
       }
     },

@@ -38,3 +38,60 @@
       </v-card-actions>
     </v-card>
 </template>
+
+<script>
+import dotenv from 'dotenv'
+dotenv.config()
+
+export default {
+  name: 'Activities',
+  data: ()=> ({
+  title: null,
+  description: null,
+  photo:null,
+  price:null,
+  short_description:null,
+  location: null
+
+  }),
+  props: {
+ 
+  },
+  mounted(){
+   
+  },
+
+ methods: {
+
+  getActivities (){
+        fetch(
+         `https://api.openweathermap.org/data/2.5/onecall?lat=36.6982&lon=137.8619&units=metric&appid=${process.env.VUE_APP_API}`
+         )
+          .then(res => {
+            return res.json();
+          }).then(this.setResults);
+    
+    },
+    setResults (results) {
+      this.weather = results;
+      this.current = results.current;
+      this.date = this.dateBuilder();
+      this.temp = Math.round(this.current.temp)
+      console.log(results)
+      console.log(this.temp)
+    },
+dateBuilder () {
+      let d = new Date();
+      let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      let day = days[d.getDay()];
+      let date = d.getDate();
+      let month = months[d.getMonth()];
+      let year = d.getFullYear();
+      return `${day} ${date} ${month} ${year}`;
+    }
+}
+
+}
+
+</script>

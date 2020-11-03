@@ -11,12 +11,14 @@
       >
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
   
-        <v-toolbar-title>旅プラーナ〜</v-toolbar-title>
+        <v-toolbar-title>HAKUTABI</v-toolbar-title>
   
         <v-spacer></v-spacer>
   
         <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
+          <v-icon>mdi-magnify
+            @onClick:
+          </v-icon>
         </v-btn>
      
   </v-app-bar>

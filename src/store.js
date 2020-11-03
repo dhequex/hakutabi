@@ -7,7 +7,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     log: false,
-    count: 0
+    count: 0,
+    activity: null
   },
   mutations: {
     increment (state) {
