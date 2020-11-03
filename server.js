@@ -15,6 +15,23 @@ await db.migrate.latest()
 })
 .catch(console.error)
 
+app.get("/api", (req, res) => {
+    db
+    .select()
+    .from('activities')
+    .then ((data) => {
+        console.log(data)
+        res.send(data);
+    });
+});
+
+
+
+
+
+
+
+
 app.get("./api/activities", (req, res) => {
     db
     .select()
@@ -25,7 +42,7 @@ app.get("./api/activities", (req, res) => {
     });
 });
 app.get("./api/activities/:id", (req, res) => {
-    const {id } = req.params
+    const { id } = req.params
     db
     .select()
     .from('activities')
@@ -35,6 +52,17 @@ app.get("./api/activities/:id", (req, res) => {
         res.send(data);
     });
 });
+app.get("/api/activities/:id", async (req, res) => {
+    const activityId = req.params
+
+      const title = await db
+        .table("activities")
+        .select("title")
+        .where({ id: activityId });
+     
+      res.json(title)
+      
+  });
 
 app.listen(3000, (req,res) =>{
 
