@@ -4,8 +4,12 @@ const knex =  require('knex');
 const config= require("./knexfile")
 require('dotenv').config()
 const db = knex(config);
+const fs = require("fs");
 
 launchExpressServer();
+
+const importActivities = require("./data/importActivities.js");
+
 
 async function launchExpressServer (){
 
@@ -13,7 +17,10 @@ await db.migrate.latest()
 .then(() => {
     console.log("Migrations Succeded")
 })
-.catch(console.error)
+.catch(console.error);
+
+await importActivities()
+console.log("Activities Imported Successfully");
 
 app.get("/api", (req, res) => {
     db
@@ -24,13 +31,6 @@ app.get("/api", (req, res) => {
         res.send(data);
     });
 });
-
-
-
-
-
-
-
 
 app.get("./api/activities", (req, res) => {
     db
