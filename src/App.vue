@@ -1,9 +1,5 @@
 <template>
   <v-app>
-  <v-navigation-drawer app>
-    HERE THE DRAWER
-  </v-navigation-drawer>
-
   <v-app-bar 
         app
         dark
@@ -25,7 +21,7 @@
 
   <!-- Sizes your content based upon application components -->
   <v-main  class="main">
-
+    <Planner></Planner>
     <Form>:user ="user"</Form>
     <Weather></Weather>
     <Activities ></Activities>
@@ -38,8 +34,8 @@
     </v-container>
   </v-main>
 
-  <v-footer app>
-HERE THE FOOTER
+  <v-footer app class="footer">
+   The mountains are always calling  🏔
   </v-footer>
 </v-app>
   
@@ -49,6 +45,7 @@ HERE THE FOOTER
 import Activities from './components/Activities.vue'
 import Weather from './components/Weather.vue'
 import Form from './components/Form.vue'
+import Planner from './components/Planner'
 
 require('dotenv').config()
 
@@ -58,6 +55,10 @@ export default {
     Form,
     Weather,
     Activities,
+    Planner,
+  },
+  props:{
+    
   }
 }
 </script>
@@ -74,5 +75,15 @@ export default {
 }
 #main{
   background-image:"src/assets/logo.png";
+}
+
+.footer.footer {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  background-color: rgb(43, 107, 226) ;
 }
 </style>

@@ -1,15 +1,15 @@
 <template>
-  <flow-form v-bind:questions="questions" v-bind:language="language" @submit="onSubmit" @complete="onComplete" :progressbar="true" 
-  
-  
-  
-  
+  <flow-form v-if="submitted === false"
+  v-bind:questions="questions" 
+  v-bind:language="language" 
+  @submit="onSubmit" 
+  @complete="onComplete" 
   />
 </template>
 
 <script>
   // Import necessary components and classes
-  import FlowForm, { QuestionModel, QuestionType, LanguageModel } from '@ditdot-dev/vue-flow-form'
+  import FlowForm, { QuestionModel, QuestionType } from '@ditdot-dev/vue-flow-form'
 
   export default {
     name: 'Form',
@@ -19,16 +19,14 @@
     props:{
       question: QuestionModel,
 
+
     },
     data() {
       return {
 
         submitted: false,
         completed: false,
-        language: new LanguageModel({
-          // Your language definitions here (optional).
-          // You can leave out this prop if you want to use the default definitions.
-        }),
+        
         questions: [
           // QuestionModel array
           new QuestionModel({
