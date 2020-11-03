@@ -2,11 +2,14 @@
    <app>
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
     <v-responsive
-      color="Blue">   
+      color="Blue">
+      <div id="location-box"> 
           <div class="location">Hakuba, Japan</div>
           <div class="date">{{dateBuilder()}}</div>
           <div class="weather-box">
-          <div class="temp">{{temp}}</div>
+          <div class="temp">{{temp}} C°</div>
+          <div id="location-box">Degrees</div>
+          </div>  
         </div>
       </v-responsive>
       </app>
@@ -38,7 +41,7 @@ export default {
 
   fetchWeather (){
         fetch(
-         `https://api.openweathermap.org/data/2.5/onecall?lat=36.6982&lon=137.8619&exclude={part}&appid=${process.env.VUE_APP_API}`
+         `https://api.openweathermap.org/data/2.5/onecall?lat=36.6982&lon=137.8619&units=metric&appid=${process.env.VUE_APP_API}`
          )
           .then(res => {
             return res.json();
@@ -48,8 +51,9 @@ export default {
     setResults (results) {
       this.weather = results;
       this.current = results.current;
-      this.date = this.current.dt;
-      this.temp = this.current.temp
+      this.date = this.dateBuilder();
+      this.temp = Math.round(this.current.temp)
+      console.log(results)
       console.log(this.temp)
     },
 dateBuilder () {

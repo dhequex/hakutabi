@@ -24,8 +24,9 @@
   <!-- Sizes your content based upon application components -->
   <v-main>
     <div id="app">
+    <Form>:user ="user"</Form>
     <Weather></Weather>
-    <Activities :user ="user"></Activities>
+    <Activities ></Activities>
   </div>
 
     <!-- Provides the application the proper gutter -->
@@ -46,11 +47,14 @@ HERE THE FOOTER
 <script>
 import Activities from './components/Activities.vue'
 import Weather from './components/Weather.vue'
+import Form from './components/Form.vue'
+
 require('dotenv').config()
 
 export default {
   name: 'App',
   components: {
+    Form,
     Weather,
     Activities,
   }
