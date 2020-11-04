@@ -1,12 +1,13 @@
 {
   "name": "hakutabi",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "node server"
+    "start": "node server",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "@ditdot-dev/vue-flow-form": "^1.1.3",

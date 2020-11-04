@@ -22,33 +22,29 @@ await db.migrate.latest()
 await importActivities()
 console.log("Activities Imported Successfully");
 
+app.use(express.json());
+
 app.get("/api", (req, res) => {
-    db
-    .select()
-    .from('activities')
-    .then ((data) => {
-        console.log(data)
-        res.send(data);
-    });
+    
+        res.json("ACTIVO");
 });
 
-app.get("./api/activities", (req, res) => {
+app.get("/api/activities", (req, res) => {
     db
     .select()
     .from('activities')
     .then ((data) => {
-        console.log(data)
-        res.send(data);
+        
+        res.json(data);
     });
 });
-app.get("./api/activities/:id", (req, res) => {
+app.get("/api/activities/:id", (req, res) => {
     const { id } = req.params
     db
     .select()
     .from('activities')
     .where(id)
     .then ((data) => {
-        console.log(data)
         res.send(data);
     });
 });

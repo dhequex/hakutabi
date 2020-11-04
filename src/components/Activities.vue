@@ -7,19 +7,19 @@
       <v-img
         class="white--text align-end"
         height="200px"
-        :src="{photo}"
+        :src="'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/main-1578450543.jpg?crop=1xw:0.7503526093088858xh;center,top&resize=1200:*'"
       >
-        <v-card-title>{{title}} </v-card-title>
+        <v-card-title>Outdoor Dining Experience </v-card-title>
       </v-img>
   
       <v-card-subtitle class="pb-0">
-        {{location}}
+        Happo, Kitaone
       </v-card-subtitle>
   
       <v-card-text class="text--primary">
         <div>{{title}}</div>
   
-        <div>{{short_description}}</div>
+        <div>A five course meal under the stars</div>
       </v-card-text>
   
       <v-card-actions>
@@ -48,6 +48,7 @@ dotenv.config()
 export default {
   name: 'Activities',
   data: ()=> ({
+  activities: [],
   title: null,
   description: null,
   photo:null,
@@ -64,16 +65,21 @@ export default {
 
  methods: {
 
-  getActivities (){
-        fetch(
-         `${process.env.DATABASE_URL}`
+  async getActivities (){
+        
+        await fetch(
+         "/api/activities"
          )
-          .select()
-          .from('activities')
-          .then ((data) => {
-          console.log(data)    
-    });
-    },
+        .then ((response) => {
+            const activities = response.json();
+            console.log(activities)
+            return activities
+        })
+        .then((activities)=> {
+          console.log(activities)
+          activities.map(activity => this.activities.push(activity))})
+        },
+
     setActivities (activities) {
       this.activities = activities;
       this.title = activities.title;
@@ -81,8 +87,7 @@ export default {
       this.photo = activities.photo;
       this.short_description = activities.short_description;
     },
-}
-
+ }
 }
 
 </script>
