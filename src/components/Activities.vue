@@ -11,17 +11,17 @@
         height="200px"
         :src="`${KEY.photo}`"
       >
-        <v-card-title dark>T{{KEY.title}} </v-card-title>
+        <v-card-title dark>{{KEY.title}} </v-card-title>
       </v-img>
   
       <v-card-subtitle class="pb-0">
-        LOC{{KEY.location}}
+        {{KEY.location}}
       </v-card-subtitle>
   
       <v-card-text class="text--primary">
-        <div>T{{KEYtitle}}</div>
+        <div>{{KEYtitle}}</div>
   
-        <div>SD{{KEY.short_description}}</div>
+        <div>{{KEY.short_description}}</div>
       </v-card-text>
   
       <v-card-actions>
@@ -113,13 +113,11 @@ export default {
     });
   },
 
-    setActivities (activities) {
-      this.activities = activity;
-      this.title = activity.title;
-      this.location = activity.location;
-      this.photo = activity.photo;
-      this.short_description = activity.short_description;
-    },
+  addToTrip(key){
+    this.$emit()
+
+  }
+    
  }
 }
 
