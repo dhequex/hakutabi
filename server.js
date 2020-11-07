@@ -5,7 +5,17 @@ const config= require("./knexfile")
 require('dotenv').config()
 const db = knex(config);
 const fs = require("fs");
+const Airtable = require('airtable');
 
+Airtable.configure({
+    endpointUrl: 'https://api.airtable.com',
+    apiKey: `${process.env.AIRTABLE_API_KEY}`
+});
+
+var base = new Airtable({apiKey: `${process.env.AIRTABLE_API_KEY}`}).base('appptozv0YeMrByuW');
+
+
+app.use(express.json());
 launchExpressServer();
 
 const importActivities = require("./data/importActivities.js");
@@ -22,12 +32,29 @@ await db.migrate.latest()
 await importActivities()
 console.log("Activities Imported Successfully");
 
-app.use(express.json());
-
-app.get("/api", (req, res) => {
+app.get("/airtable/api", (req, res) => {
     
-        res.json("ACTIVO");
-});
+    base('activities').select({
+        // Selecting the first 3 records in Grid view:
+        maxRecords: 5,
+        view: "Grid view"
+    }).eachPage(function page(records, fetchNextPage) {
+        // This function (`page`) will get called for each page of records.
+    
+        records.forEach(function(record) {
+            console.log('Retrieved', record.get('title'));
+        })
+    
+        // To fetch the next page of records, call `fetchNextPage`.
+        // If there are more records, `page` will get called again.
+        // If there are no more records, `done` will get called.
+        fetchNextPage();
+    
+    }, function done(err) {
+        if (err) { console.error(err); return; }
+    });
+})
+
 
 app.get("/api/activities", (req, res) => {
     db

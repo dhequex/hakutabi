@@ -1,25 +1,27 @@
 <template>
 <v-container>
+  <span v-for="(KEY) in activities" :key="KEY">
     <v-card
+      
       class="mx-auto"
       max-width="400"
     >
       <v-img
         class="white--text align-end"
         height="200px"
-        :src="'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/main-1578450543.jpg?crop=1xw:0.7503526093088858xh;center,top&resize=1200:*'"
+        :src="`${KEY.photo}`"
       >
-        <v-card-title>Outdoor Dining Experience </v-card-title>
+        <v-card-title dark>{{KEY.title}} </v-card-title>
       </v-img>
   
       <v-card-subtitle class="pb-0">
-        Happo, Kitaone
+        {{KEY.location}}
       </v-card-subtitle>
   
       <v-card-text class="text--primary">
-        <div>{{title}}</div>
+        <div>{{KEYtitle}}</div>
   
-        <div>A five course meal under the stars</div>
+        <div>{{KEY.short_description}}</div>
       </v-card-text>
   
       <v-card-actions>
@@ -38,23 +40,29 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+  </span>
     </v-container>
 </template>
 
 <script>
 import dotenv from 'dotenv'
 dotenv.config()
+const Airtable = require('airtable');
+
+Airtable.configure({
+    endpointUrl: 'https://api.airtable.com',
+    apiKey: `${process.env.AIRTABLE_API_KEY}`
+});
+
+var base = new Airtable({apiKey: `${process.env.AIRTABLE_API_KEY}`}).base('appptozv0YeMrByuW');
+
+
 
 export default {
   name: 'Activities',
+  
   data: ()=> ({
   activities: [],
-  title: null,
-  description: null,
-  photo:null,
-  price:null,
-  short_description:null,
-  location: null
 
   }),
   props: [],
@@ -71,22 +79,45 @@ export default {
          "/api/activities"
          )
         .then ((response) => {
-            const activities = response.json();
-            console.log(activities)
-            return activities
+            const data = response.json();
+            console.log(data)
+            return data;
         })
-        .then((activities)=> {
-          console.log(activities)
-          activities.map(activity => this.activities.push(activity))})
-        },
+        .then((data)=> {
+         this.activities = data;
+         console.log(this.activities)
+         return
+        });
+  },
 
-    setActivities (activities) {
-      this.activities = activities;
-      this.title = activities.title;
-      this.location = activities.location;
-      this.photo = activities.photo;
-      this.short_description = activities.short_description;
-    },
+
+  async fetchActivities (){
+
+    await base('activities').select({
+        // Selecting the first 3 records in Grid view:
+        maxRecords: 5,
+        view: "Grid view"
+    }).eachPage(function page(records, fetchNextPage) {
+        // This function (`page`) will get called for each page of records.
+    
+        records.forEach(function(record) {
+            console.log('Retrieved', record.get('title'));
+        })
+        // To fetch the next page of records, call `fetchNextPage`.
+        // If there are more records, `page` will get called again.
+        // If there are no more records, `done` will get called.
+        fetchNextPage();
+    
+    }, function done(err) {
+        if (err) { console.error(err); return; }
+    });
+  },
+
+  addToTrip(key){
+    this.$emit()
+
+  }
+    
  }
 }
 
