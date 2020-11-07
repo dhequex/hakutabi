@@ -1,25 +1,27 @@
 <template>
 <v-container>
+  <span v-for="(KEY) in activities" :key="KEY">
     <v-card
+      
       class="mx-auto"
       max-width="400"
     >
       <v-img
         class="white--text align-end"
         height="200px"
-        :src="'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/main-1578450543.jpg?crop=1xw:0.7503526093088858xh;center,top&resize=1200:*'"
+        :src="`${KEY.photo}`"
       >
-        <v-card-title>Outdoor Dining Experience </v-card-title>
+        <v-card-title dark>T{{KEY.title}} </v-card-title>
       </v-img>
   
       <v-card-subtitle class="pb-0">
-        Happo, Kitaone
+        LOC{{KEY.location}}
       </v-card-subtitle>
   
       <v-card-text class="text--primary">
-        <div>{{title}}</div>
+        <div>T{{KEYtitle}}</div>
   
-        <div>A five course meal under the stars</div>
+        <div>SD{{KEY.short_description}}</div>
       </v-card-text>
   
       <v-card-actions>
@@ -38,6 +40,7 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+  </span>
     </v-container>
 </template>
 
@@ -57,14 +60,9 @@ var base = new Airtable({apiKey: `${process.env.AIRTABLE_API_KEY}`}).base('apppt
 
 export default {
   name: 'Activities',
+  
   data: ()=> ({
   activities: [],
-  title: null,
-  description: null,
-  photo:null,
-  price:null,
-  short_description:null,
-  location: null
 
   }),
   props: [],
@@ -83,12 +81,15 @@ export default {
         .then ((response) => {
             const data = response.json();
             console.log(data)
-            
+            return data;
         })
         .then((data)=> {
-          data.forEach(activity)
-          })
-        },
+         this.activities = data;
+         console.log(this.activities)
+         return
+        });
+  },
+
 
   async fetchActivities (){
 
@@ -113,11 +114,11 @@ export default {
   },
 
     setActivities (activities) {
-      this.activities = activities;
-      this.title = activities.title;
-      this.location = activities.location;
-      this.photo = activities.photo;
-      this.short_description = activities.short_description;
+      this.activities = activity;
+      this.title = activity.title;
+      this.location = activity.location;
+      this.photo = activity.photo;
+      this.short_description = activity.short_description;
     },
  }
 }
