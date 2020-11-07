@@ -1,6 +1,6 @@
 <template>
 <v-container>
-  <span v-for="(KEY) in activities" :key="KEY">
+  <span v-for="activity in activities" :key="activity.id">
     <v-card
       
       class="mx-auto"
@@ -9,26 +9,29 @@
       <v-img
         class="white--text align-end"
         height="200px"
-        :src="`${KEY.photo}`"
+        :src="`${activity.photo}`"
       >
-        <v-card-title dark>{{KEY.title}} </v-card-title>
+        <v-card-title dark>{{activity.title}} </v-card-title>
       </v-img>
   
       <v-card-subtitle class="pb-0">
-        {{KEY.location}}
+        {{activity.location}}
       </v-card-subtitle>
   
       <v-card-text class="text--primary">
-        <div>{{KEYtitle}}</div>
+        <div>{{activitytitle}}</div>
   
-        <div>{{KEY.short_description}}</div>
+        <div>{{activity.short_description}}</div>
       </v-card-text>
   
       <v-card-actions>
         <v-btn
           color="orange"
           text
+          :key="activity.id"
+          @click="addToTrip(key)"
         >
+        
           Add to My Trip
         </v-btn>
   
@@ -45,15 +48,15 @@
 </template>
 
 <script>
-import dotenv from 'dotenv'
-dotenv.config()
-const Airtable = require('airtable');
+import {store} from "../store.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
+const Airtable = require('airtable');
 Airtable.configure({
     endpointUrl: 'https://api.airtable.com',
     apiKey: `${process.env.AIRTABLE_API_KEY}`
 });
-
 var base = new Airtable({apiKey: `${process.env.AIRTABLE_API_KEY}`}).base('appptozv0YeMrByuW');
 
 
@@ -63,7 +66,12 @@ export default {
   
   data: ()=> ({
   activities: [],
-
+  activity: {location: " ",
+  title: " ",
+  short_description: " ", 
+  price: "", 
+  photo: ""
+  }
   }),
   props: [],
 
@@ -114,7 +122,7 @@ export default {
   },
 
   addToTrip(key){
-    this.$emit()
+    this.$store.dispatch("addToTrip", key)
 
   }
     

@@ -1,25 +1,30 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import importActivity from '../data/importActivities';
-const knex = require('knex');
-const config= require("./knexfile")
-const db = knex(config);
-require('dotenv').config()
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
   state: {
-    log: false,
-    count: 0,
-    activity: null
+trip: [],
+
   },
+
   mutations: {
-    increment (state) {
-      state.count++
-    },
-    logStatus (state){
-        state.user= true;
+    ADD_TO_TRIP(state, activity){
+      console.log(activity)
+      state.trip.push(activity)
+    },   
+  },
+  
+  actions:{
+    addToTrip(context, activity){
+      context.commit("ADD_TO_TRIP", activity)
+    }
+  },
+
+  getters:{
+    getTrip(state){
+      return state.trip
     }
   }
 })

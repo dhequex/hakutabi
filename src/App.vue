@@ -22,11 +22,10 @@
   <!-- Sizes your content based upon application components -->
   <v-main  class="main">
     <Form>:user ="user"</Form>
+    <Planner></Planner>
     <Weather></Weather>
     <Activities >
-    <Planner>
-
-    </Planner>
+    
 
 
     </Activities>
@@ -45,6 +44,7 @@
 </template>
 
 <script>
+import {store} from "./store.js";
 import Activities from './components/Activities.vue'
 import Weather from './components/Weather.vue'
 import Form from './components/Form.vue'
