@@ -13,12 +13,19 @@ trip: [],
     ADD_TO_TRIP(state, activity){
       console.log(activity)
       state.trip.push(activity)
+      
     },   
   },
   
   actions:{
     addToTrip(context, activity){
-      context.commit("ADD_TO_TRIP", activity)
+      context.commit("ADD_TO_TRIP", activity);
+      
+    },
+    showAlert() {
+      <v-alert
+      type="success"
+      ></v-alert>
     }
   },
 

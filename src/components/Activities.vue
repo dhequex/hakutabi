@@ -19,7 +19,7 @@
       </v-card-subtitle>
   
       <v-card-text class="text--primary">
-        <div>{{activitytitle}}</div>
+        <div>{{activity.title}}</div>
   
         <div>{{activity.short_description}}</div>
       </v-card-text>
@@ -28,8 +28,7 @@
         <v-btn
           color="orange"
           text
-          :key="activity.id"
-          @click="addToTrip(key)"
+          @click="addToTrip(activity)"
         >
         
           Add to My Trip
@@ -124,7 +123,7 @@ export default {
   addToTrip(key){
     this.$store.dispatch("addToTrip", key)
 
-  }
+  },
     
  }
 }

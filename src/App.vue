@@ -5,7 +5,8 @@
         dark
         color="blue"
       >
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+        @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
   
         
   
@@ -21,7 +22,7 @@
 
   <!-- Sizes your content based upon application components -->
   <v-main  class="main">
-    <Form>:user ="user"</Form>
+    <Form></Form>
     <Planner></Planner>
     <Weather></Weather>
     <Activities >
@@ -60,7 +61,16 @@ export default {
     Activities,
     Planner,
   },
-  props:[]
+data:()=>({
+  drawer:false,
+  group:null,
+
+}),
+watch: {
+  group(){
+    this.drawer = false
+  }
+},
     
   }
 
@@ -87,6 +97,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  background-color: rgb(43, 107, 226) ;
 }
 </style>
