@@ -1,7 +1,7 @@
 <template>
 	<v-container>
 		<span v-for="activity in activities" :key="activity.id">
-			<v-card class="mx-auto" max-width="400">
+			<v-card class="mx-auto" pa="2">
 				<v-img
 					class="white--text align-end"
 					height="200px"

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-container>
+		<v-container v-if="getTrip.length > 0">
 			<v-card class="mt-5 mb-8 pa-2">
 				<v-row>
 					<v-card-title dark>My Trip</v-card-title>
@@ -17,6 +17,11 @@
 						</v-col>
 					</span>
 				</v-row>
+        	<v-card-actions>
+					<v-btn color="orange" text @click="mailto">
+						Send to My Email
+					</v-btn>
+        	</v-card-actions>
 			</v-card>
 		</v-container>
 	</div>
