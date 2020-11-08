@@ -1,101 +1,78 @@
 <template>
-  <v-app>
-  <v-app-bar 
-        app
-        dark
-        color="blue"
-      >
-        <v-app-bar-nav-icon
-        @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-  
-        
-  
-        <v-spacer></v-spacer>
-  
-        <v-text-field search-query:
-        append-icon="mdi-magnify"
-        >
-  
-        </v-text-field>
-     
-  </v-app-bar>
+	<v-app>
+		<v-app-bar app dark color="blue">
+			<v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-  <!-- Sizes your content based upon application components -->
-  <v-main  class="main">
-    <Form></Form>
-    <Planner></Planner>
-    <Weather></Weather>
-    <Activities >
-    
+			<v-spacer></v-spacer>
 
+			<v-text-field search-query: append-icon="mdi-magnify"> </v-text-field>
+		</v-app-bar>
 
-    </Activities>
+		<!-- Sizes your content based upon application components -->
+		<v-main class="main">
+			<Form></Form>
+			<Planner></Planner>
+			<Weather></Weather>
+			<Activities> </Activities>
 
-    <!-- Provides the application the proper gutter -->
-    <v-container fluid>
+			<!-- Provides the application the proper gutter -->
+			<v-container fluid> </v-container>
+		</v-main>
 
-    </v-container>
-  </v-main>
-
-  <v-footer app class="footer">
-   The mountains are always calling  🏔
-  </v-footer>
-</v-app>
-  
+		<v-footer app class="footer"> The mountains are always calling 🏔 </v-footer>
+	</v-app>
 </template>
 
 <script>
-import {store} from "./store.js";
-import Activities from './components/Activities.vue'
-import Weather from './components/Weather.vue'
-import Form from './components/Form.vue'
-import Planner from './components/Planner.vue'
+import { store } from "./store.js";
+import Activities from "./components/Activities.vue";
+import Weather from "./components/Weather.vue";
+import Form from "./components/Form.vue";
+import Planner from "./components/Planner.vue";
+//const SibApiV3Sdk = require("sib-api-v3-sdk");
 
-require('dotenv').config()
+require("dotenv").config();
 
 export default {
-  name: 'App',
-  components: {
-    Form,
-    Weather,
-    Activities,
-    Planner,
-  },
-data:()=>({
-  drawer:false,
-  group:null,
-
-}),
-watch: {
-  group(){
-    this.drawer = false
-  }
-},
-    
-  }
-
+	name: "App",
+	components: {
+		Form,
+		Weather,
+		Activities,
+		Planner,
+	},
+	data: () => ({
+		drawer: false,
+		group: null,
+	}),
+	watch: {
+		group() {
+			this.drawer = false;
+		},
+	},
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  background-color: rgb(43, 107, 226) ;
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+	margin-top: 60px;
+	background-color: rgb(43, 107, 226);
 }
-#main{
-  background-image:"src/assets/logo.png";
+#main {
+	background-image: "src/assets/logo.png";
 }
 
 .footer.footer {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+	margin-top: 60px;
 }
 </style>

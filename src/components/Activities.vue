@@ -1,5 +1,5 @@
 <template>
-	<v-container>
+	<v-container pa=" 2 " >
 		<span v-for="activity in activities" :key="activity.id">
 			<v-card class="mx-auto" pa="2">
 				<v-img
