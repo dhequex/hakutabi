@@ -2,7 +2,7 @@
 <v-container>
     <v-card dark>
     <v-img 
-     :src="'https://resources.matcha-jp.com/resize/720x2000/2018/10/29-65452.jpeg'"
+     :src="'https://www.vill.hakuba.nagano.jp/privilege/img/autumn/ooide.jpg'"
      class="mx-auto">
       <div > 
           <v-card-title>Hakuba, Japan</v-card-title>

@@ -20,6 +20,7 @@
     "node": "^15.0.1",
     "pg": "^8.4.2",
     "prettier": "^2.1.2",
+    "sib-api-v3-sdk": "github:sendinblue/APIv3-nodejs-library",
     "vue": "^2.6.11",
     "vuetify": "^2.2.11",
     "vuex": "^3.5.1"
