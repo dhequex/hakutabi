@@ -1,0 +1,10 @@
+Keep your this file and signing.keystore in a safe place. You'll need these files if you want to upload future versions of your PWA to the Google Play Store.
+
+Key store file: signing.keystore
+Key store password: qQzbhEYw_cEg
+Key alias: hakutabi-app
+Key password: 5bLZWioceSQN
+Signer's full name: HAKUTABI  Admin
+Signer's organization: HAKUTABI
+Signer's organizational unit: Engineering
+Signer's country code: JP

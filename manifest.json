@@ -1,0 +1,37 @@
+{
+    "dir": "ltr",
+    "lang": "en",
+    "name": "HAKUBA Activity Finder - HAKUTABI",
+    "short_name": "HAKUTABI ",
+    "scope": "/",
+    "display": "standalone",
+    "start_url": "https://hakutabi.app/",
+    "background_color": "#FFBE4E",
+    "theme_color": "transparent",
+    "description": "Your one stop to find activities and plans to do in Hakuba",
+    "orientation": "portrait",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "categories": ["outdoors", "travel", "kids", "family","adventure"],
+    "icons": [
+        {
+            "src": "/images/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1592798897861x312994128276829200%2FSquareLogo.png",
+            "type": "image/jpeg",
+            "sizes": "128x128"
+        },
+        {
+      "src": "/maskableIcon.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "maskable" 
+    },
+    {
+        "src": "https://hakutabi.app/squarelogo512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+    ],
+    "url": "https://www.hakutabi.app",
+    "screenshots": [],
+    "manifestUrl": "https://www.hakutabi.app/manifest.json"
+}

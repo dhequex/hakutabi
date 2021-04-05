@@ -1,0 +1,5 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : { "namespace": "android_app", "package_name": "app.hakutabi.twa",
+                   "sha256_cert_fingerprints": ["71:BE:74:0B:D7:96:B3:0F:87:2F:81:05:E5:2E:C2:F2:42:35:98:7B:9D:80:57:BA:51:56:99:18:B0:06:12:E4"] }
+    }]
